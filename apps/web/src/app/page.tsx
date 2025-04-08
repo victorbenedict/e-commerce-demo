@@ -1,6 +1,19 @@
+'use client';
 import { Button } from '@repo/ui/components/base/button';
 
 export default function Home() {
+  const getData = async () => {
+    const res = await fetch(`http://192.168.1.50:3001`);
+    const data = await res.text();
+    return data;
+  };
+
+  const handleClick = async () => {
+    console.log('click');
+    const data = await getData();
+    console.log(data);
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center space-y-6">
       <div className="flex flex-col items-center space-y-4 rounded-xl p-6 shadow-2xl">
@@ -11,7 +24,7 @@ export default function Home() {
         </h1>
 
         <p>Here is your shadcn button.</p>
-        <Button>Button</Button>
+        <Button onClick={handleClick}>Button</Button>
       </div>
     </div>
   );
