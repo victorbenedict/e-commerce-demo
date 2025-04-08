@@ -3,7 +3,7 @@ import { Button } from '@repo/ui/components/base/button';
 
 export default function Home() {
   const getData = async () => {
-    const res = await fetch(`http://192.168.1.50:3001`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
     const data = await res.text();
     return data;
   };
