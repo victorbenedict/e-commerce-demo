@@ -1,18 +1,19 @@
 'use client';
 import { Button } from '@repo/ui/components/base/button';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const getData = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
-    const data = await res.text();
-    return data;
-  };
+  const [message, setMessage] = useState('');
 
-  const handleClick = async () => {
-    console.log('click');
-    const data = await getData();
-    console.log(data);
-  };
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch('/api/hello');
+      const data = await res.json();
+      setMessage(data.message);
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center space-y-6">
@@ -24,7 +25,8 @@ export default function Home() {
         </h1>
 
         <p>Here is your shadcn button.</p>
-        <Button onClick={handleClick}>Button</Button>
+        <div>{message}</div>
+        <Button>Button</Button>
       </div>
     </div>
   );
