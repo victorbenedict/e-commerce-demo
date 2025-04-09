@@ -9,8 +9,8 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      setMessage('Checking API...');
-      const res = await fetch('/api/hello');
+      setMessage('Checking API health...');
+      const res = await fetch('/api/health');
       const data = await res.json();
       setMessage(data.message);
     }

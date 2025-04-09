@@ -20,23 +20,34 @@ import {
 import { Input } from '@repo/ui/components/base/input';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useRouter } from 'next/navigation';
+import supabase from '@/utils/supabase/supabase';
 
 const formSchema = z.object({
-  username: z.string().trim().min(1, 'Username is required'),
+  email: z.string().trim().min(1, 'Email is required').email('Invalid email'),
   password: z.string().min(1, 'Password is required'),
 });
 
 export default function Login() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: '',
+      email: '',
       password: '',
     },
   });
 
-  const onLogin = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const { error } = await supabase.auth.signInWithPassword(values);
+
+    if (error) {
+      form.setError('email', { message: 'Invalid email or password' });
+      form.setError('password', { message: ' ' });
+      return;
+    }
+
+    router.push('/dashboard');
   };
 
   return (
@@ -50,13 +61,13 @@ export default function Login() {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onLogin)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
-                name="username"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -81,7 +92,7 @@ export default function Login() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
                 Login
               </Button>
             </form>
