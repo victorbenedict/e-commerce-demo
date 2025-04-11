@@ -20,10 +20,10 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/base/sidebar';
-import { NavMain } from '@/components/nav-main';
-import { NavSecondary } from '@/components/nav-secondary';
-import { NavUser } from '@/components/nav-user';
+} from '../components/base/sidebar';
+import { NavMain } from '../components/nav-main';
+import { NavSecondary } from '../components/nav-secondary';
+import { NavUser } from '../components/nav-user';
 
 const data = {
   user: {
