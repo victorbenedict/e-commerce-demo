@@ -129,7 +129,17 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar(
+  {
+    // data,
+    ...props
+  }: React.ComponentProps<typeof Sidebar>
+  //  & {
+  //   data: string;
+  // }
+) {
+  // const navData = JSON.parse(data);
+
   return (
     <Sidebar className="top-(--header-height) h-[calc(100svh-var(--header-height))]!" {...props}>
       <SidebarHeader>
