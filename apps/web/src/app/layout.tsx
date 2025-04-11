@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'turborepo-shadcn-tailwind-v4',
-  description: 'Turborepo-Shadcn-Tailwind CSS v4 Boilerplate',
+  title: 'e-commerce-demo',
+  description: 'Made by Victor Benedict',
 };
 
 export default function RootLayout({

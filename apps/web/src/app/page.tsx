@@ -1,13 +1,16 @@
 'use client';
 import { Button } from '@repo/ui/components/base/button';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [message, setMessage] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch('/api/hello');
+      setMessage('Checking API health...');
+      const res = await fetch('/api/health');
       const data = await res.json();
       setMessage(data.message);
     }
@@ -26,7 +29,9 @@ export default function Home() {
 
         <p>Here is your shadcn button.</p>
         <div>{message}</div>
-        <Button>Button</Button>
+        <Button className="hover:cursor-pointer" onClick={() => router.push('/login')}>
+          Login
+        </Button>
       </div>
     </div>
   );
