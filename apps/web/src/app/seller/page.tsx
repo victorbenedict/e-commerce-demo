@@ -1,10 +1,10 @@
-import BestSellers from './BestSellers';
-import LifetimeSales from './LifetimeSales';
-import { SaleStatistics } from './SaleStatistics';
+import BestSellers from '@/components/dashboard/BestSellers';
+import LifetimeSales from '@/components/dashboard/LifetimeSales';
+import { SaleStatistics } from '@/components/dashboard/SaleStatistics';
 
 export default function Dashboard() {
   return (
-    <div className="max-w-5xl w-full h-full mx-auto pt-10 space-y-4 px-6">
+    <>
       <h3 className="text-3xl font-bold">Dashboard</h3>
       <div className="grid grid-cols-3 gap-4">
         <div className="col-span-2 space-y-4">
@@ -15,6 +15,6 @@ export default function Dashboard() {
           <LifetimeSales />
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -10,7 +10,7 @@ import {
 
 const data = {
   user: {
-    name: 'admin',
+    name: 'seller',
     email: 'm@example.com',
     avatar: 'https://github.com/shadcn.png',
   },
@@ -21,15 +21,15 @@ const data = {
       items: [
         {
           title: 'Dashboard',
-          url: 'admin/dashboard',
+          url: '/seller',
         },
         {
           title: 'New Product',
-          url: '#',
+          url: '/seller/products/create',
         },
         {
           title: 'New Coupon',
-          url: '#',
+          url: '/seller/coupons/create',
         },
       ],
     },
