@@ -21,15 +21,15 @@ const data = {
       items: [
         {
           title: 'Dashboard',
-          url: '/seller',
+          url: '/dashboard',
         },
         {
           title: 'New Product',
-          url: '/seller/products/create',
+          url: '/dashboard/products/create',
         },
         {
           title: 'New Coupon',
-          url: '/seller/coupons/create',
+          url: '/dashboard/coupons/create',
         },
       ],
     },

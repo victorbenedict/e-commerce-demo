@@ -2,7 +2,7 @@ import BestSellers from '@/components/dashboard/BestSellers';
 import LifetimeSales from '@/components/dashboard/LifetimeSales';
 import { SaleStatistics } from '@/components/dashboard/SaleStatistics';
 
-export default function Dashboard() {
+export default function Home() {
   return (
     <>
       <h3 className="text-3xl font-bold">Dashboard</h3>

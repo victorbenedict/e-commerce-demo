@@ -1,8 +1,9 @@
+import { NavBar } from '@/components/NavBar';
 import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'e-commerce-demo',
+  title: 'Store | e-commerce-demo',
   description: 'Made by Victor Benedict',
 };
 
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <NavBar>{children}</NavBar>
+      </body>
     </html>
   );
 }
