@@ -120,3 +120,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .no-spinner {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+  }
+
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

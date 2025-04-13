@@ -12,12 +12,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@repo/ui/components/base/sidebar';
-import { NavMain } from '@repo/ui/components/nav-main';
-import { NavSecondary } from '@repo/ui/components/nav-secondary';
-import { NavUser } from '@repo/ui/components/nav-user';
-import data from './sidebarData';
 
-export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+import data from '../lib/sidebarData';
+import { NavSecondary } from './NavSecondary';
+import { NavMain } from './NavMain';
+import { NavUser } from './NavUser';
+
+export function SellerSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar className="top-(--header-height) h-[calc(100svh-var(--header-height))]!" {...props}>
       <SidebarHeader>

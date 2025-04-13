@@ -1,6 +1,6 @@
 import { SidebarInset, SidebarProvider } from '@repo/ui/components/base/sidebar';
-import { SiteHeader } from '@repo/ui/components/site-header';
-import { AdminSidebar } from './AdminSidebar';
+import { SellerSidebar } from '@/components/SellerSidebar';
+import { SiteHeader } from '@/components/SiteHeader';
 
 export default function Layout({
   children,
@@ -12,8 +12,10 @@ export default function Layout({
       <SidebarProvider className="flex flex-col">
         <SiteHeader />
         <div className="flex flex-1">
-          <AdminSidebar />
-          <SidebarInset>{children}</SidebarInset>
+          <SellerSidebar />
+          <SidebarInset className="max-w-5xl w-full h-full mx-auto pt-6 space-y-4 px-6">
+            {children}
+          </SidebarInset>
         </div>
       </SidebarProvider>
     </div>

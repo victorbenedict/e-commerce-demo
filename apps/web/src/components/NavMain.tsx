@@ -6,7 +6,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '../components/base/collapsible';
+} from '@repo/ui/components/base/collapsible';
 import {
   SidebarGroup,
   SidebarMenu,
@@ -16,7 +16,9 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from '../components/base/sidebar';
+} from '@repo/ui/components/base/sidebar';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export function NavMain({
   items,
@@ -29,9 +31,12 @@ export function NavMain({
     items?: {
       title: string;
       url: string;
+      isActive?: boolean;
     }[];
   }[];
 }) {
+  const pathname = usePathname();
+
   return (
     <SidebarGroup>
       <SidebarMenu>
@@ -39,12 +44,7 @@ export function NavMain({
           <Collapsible key={item.title} asChild defaultOpen={item.isActive || true}>
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
-                <SidebarMenuButton
-                  asChild
-                  tooltip={item.title}
-                  className="hover:cursor-pointer"
-                  disabled
-                >
+                <SidebarMenuButton asChild tooltip={item.title} disabled>
                   <a href={item.url}>
                     <item.icon />
                     <span>{item.title}</span>
@@ -61,15 +61,16 @@ export function NavMain({
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
-                      {item.items?.map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton asChild>
-                            <a href={subItem.url}>
-                              <span>{subItem.title}</span>
-                            </a>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
+                      {item.items?.map((subItem) => {
+                        const isActive = pathname === subItem.url;
+                        return (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton asChild isActive={isActive}>
+                              <Link href={subItem.url}>{subItem.title}</Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        );
+                      })}
                     </SidebarMenuSub>
                   </CollapsibleContent>
                 </>

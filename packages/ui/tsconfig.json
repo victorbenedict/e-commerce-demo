@@ -3,13 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      // "@/*": ["./src/*"],
-      "@/*": ["../../packages/ui/src/*"],
-      "@/components/*": ["src/components/*"],
-      "@/ui/*": ["src/components/base/*"],
-      "@/lib/*": ["src/lib/*"],
-      "@/utils/*": ["src/lib/utils/*"],
-      "@/hooks/*": ["src/hooks/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],

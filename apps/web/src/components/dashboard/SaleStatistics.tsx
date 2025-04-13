@@ -2,7 +2,7 @@
 
 import { format, parseISO } from 'date-fns';
 import { Area, AreaChart, XAxis, YAxis } from 'recharts';
-import { monthlyCount } from './data';
+import { monthlyCount } from '../../lib/dashboardData';
 
 import {
   Card,

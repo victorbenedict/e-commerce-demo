@@ -7,7 +7,7 @@ import {
   ChartTooltipContent,
 } from '@repo/ui/components/base/chart';
 import { Pie, PieChart } from 'recharts';
-import { totalOrders, totalSales } from './data';
+import { totalOrders, totalSales } from '../../lib/dashboardData';
 
 const chartData = [
   { order: 'Completed:', count: 72, fill: 'var(--chart-2)' },
