@@ -15,8 +15,10 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    // it('should return "Hello World!"', () => {
-    //   expect(appController.getHello()).toBe('Hello World!');
-    // });
+    it('should return 200 status', () => {
+      const res = { sendStatus: jest.fn() } as any;
+      appController.getOk(res);
+      expect(res.sendStatus).toHaveBeenCalledWith(200);
+    });
   });
 });
