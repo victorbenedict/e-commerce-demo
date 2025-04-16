@@ -1,4 +1,3 @@
-import { UserRole } from 'src/user-role/entities/user-role.entity';
 import { DataSource } from 'typeorm';
 
 export default new DataSource({
@@ -8,6 +7,8 @@ export default new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [UserRole],
+  entities: [
+    /* Add entities here*/
+  ],
   migrations: ['dist/db/migration/*.js'],
 });
