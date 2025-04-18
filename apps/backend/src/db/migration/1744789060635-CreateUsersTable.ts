@@ -1,61 +1,58 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class CreateUserTable1744789060635 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    // Create the enum type for the 'role' field
-    await queryRunner.query(
-      `CREATE TYPE user_role_enum AS ENUM ('admin', 'user', 'moderator', 'member');`,
-    );
+    await queryRunner.query(`
+        CREATE TYPE user_role_enum AS ENUM ('admin', 'member');
+      `);
 
-    // Create the 'users' table
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'user_profiles',
         columns: [
           {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
-            default: 'uuid_generate_v4()',
-          },
-          {
-            name: 'auth_user_id',
-            type: 'uuid',
+            isNullable: false,
           },
           {
             name: 'name',
             type: 'varchar',
+            length: '256',
+            isNullable: true,
           },
           {
             name: 'role',
             type: 'user_role_enum',
+            isNullable: true,
             default: `'member'`,
-          },
-          {
-            name: 'created_at',
-            type: 'timestamp',
-            default: 'CURRENT_TIMESTAMP',
-          },
-          {
-            name: 'updated_at',
-            type: 'timestamp',
-            default: 'CURRENT_TIMESTAMP',
-          },
-        ],
-        foreignKeys: [
-          {
-            columnNames: ['auth_user_id'],
-            referencedTableName: 'auth.users',
-            referencedColumnNames: ['id'],
-            onDelete: 'CASCADE',
           },
         ],
       }),
     );
+    await queryRunner.createForeignKey(
+      'user_profiles',
+      new TableForeignKey({
+        columnNames: ['id'],
+        referencedTableName: 'auth.users',
+        referencedColumnNames: ['id'],
+        onDelete: 'CASCADE',
+      }),
+    );
+
+    await queryRunner.query(
+      `ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;`,
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('user_profiles');
     await queryRunner.query(`DROP TYPE user_role_enum;`);
   }
 }

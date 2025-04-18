@@ -1,5 +1,5 @@
 import { Product } from 'src/product/entities/product.entity';
-import { User } from 'src/user/entities/user.entity';
+import { UserProfile } from 'src/user-profile/entities/user-profile.entity';
 import {
   Column,
   CreateDateColumn,
@@ -30,9 +30,9 @@ export class Inventory {
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: Date;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => UserProfile)
   @JoinColumn({ name: 'seller_id' })
-  seller: User;
+  seller: UserProfile;
 
   @ManyToOne(() => Product)
   @JoinColumn({ name: 'product_id' })

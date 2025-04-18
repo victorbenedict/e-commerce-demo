@@ -1,6 +1,6 @@
 import { Inventory } from 'src/inventory/entities/inventory.entity';
 import { Product } from 'src/product/entities/product.entity';
-import { User } from 'src/user/entities/user.entity';
+import { UserProfile } from 'src/user-profile/entities/user-profile.entity';
 import { DataSource } from 'typeorm';
 
 export default new DataSource({
@@ -10,6 +10,6 @@ export default new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [User, Product, Inventory],
+  entities: [UserProfile, Product, Inventory],
   migrations: ['dist/db/migration/*.js'],
 });
