@@ -5,7 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { InventoryModule } from './inventory/inventory.module';
 import { ProductModule } from './product/product.module';
-import { UserModule } from './user/user.module';
+import { UserProfileModule } from './user-profile/user-profile.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -25,7 +25,7 @@ import { UserModule } from './user/user.module';
     }),
     InventoryModule,
     ProductModule,
-    UserModule,
+    UserProfileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -20,14 +20,19 @@ export class CreateInventoryTable1744789079392 implements MigrationInterface {
           {
             name: 'seller_id',
             type: 'uuid',
+            isPrimary: true,
+            isNullable: false,
           },
           {
             name: 'product_id',
             type: 'uuid',
+            isPrimary: true,
+            isNullable: false,
           },
           {
             name: 'quantity',
             type: 'integer',
+            default: 0,
           },
           {
             name: 'created_at',
@@ -43,28 +48,30 @@ export class CreateInventoryTable1744789079392 implements MigrationInterface {
       }),
     );
 
-    await queryRunner.createForeignKey(
-      'inventory',
+    await queryRunner.createForeignKeys('inventory', [
       new TableForeignKey({
         columnNames: ['seller_id'],
-        referencedTableName: 'users',
+        referencedTableName: 'user_profiles',
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',
       }),
-    );
-
-    await queryRunner.createForeignKey(
-      'inventory',
       new TableForeignKey({
         columnNames: ['product_id'],
         referencedTableName: 'products',
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',
       }),
-    );
+    ]);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    const table = await queryRunner.getTable('inventory');
+    if (table) {
+      const foreignKeys = table.foreignKeys;
+      for (const foreignKey of foreignKeys) {
+        await queryRunner.dropForeignKey('inventory', foreignKey);
+      }
+    }
     await queryRunner.dropTable('inventory');
   }
 }
