@@ -1,6 +1,6 @@
-import { Controller, Get, Body, Patch, Param } from '@nestjs/common';
-import { UserProfileService } from './user-profile.service';
+import { Body, Controller, Get, Param, Patch } from '@nestjs/common';
 import { UpdateUserProfileDto } from './dto/update-user-profile.dto';
+import { UserProfileService } from './user-profile.service';
 
 @Controller('user-profile')
 export class UserProfileController {
