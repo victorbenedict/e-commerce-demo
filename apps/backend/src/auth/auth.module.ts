@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
-import { JwtStrategy } from './jwt.strategy';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtStrategy } from './jwt/jwt.strategy';
+import { UserRoles } from './role/roles.entity';
+import { RolesService } from './role/roles.service';
 
 @Module({
-  providers: [JwtStrategy],
-  exports: [],
+  imports: [TypeOrmModule.forFeature([UserRoles])],
+  providers: [JwtStrategy, RolesService],
+  exports: [RolesService],
 })
 export class AuthModule {}

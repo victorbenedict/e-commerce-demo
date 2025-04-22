@@ -3,7 +3,7 @@ import { EUserRole } from 'src/constants/types';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity({ name: 'user_profiles' })
-export class UserProfile {
+export class UserRoles {
   @Expose()
   @PrimaryColumn('uuid')
   id: string;
