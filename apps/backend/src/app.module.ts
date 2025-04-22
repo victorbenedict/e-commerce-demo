@@ -5,7 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { JwtAuthGuard } from './auth/jwt/jwt-auth.guard';
+import { RolesGuard } from './auth/role/roles.guard';
 import { InventoryModule } from './inventory/inventory.module';
 import { ProductModule } from './product/product.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
@@ -37,6 +38,10 @@ import { UserProfileModule } from './user-profile/user-profile.module';
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
     },
   ],
 })

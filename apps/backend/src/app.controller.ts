@@ -1,6 +1,6 @@
 import { Controller, Get, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { Public } from './auth/public.decorator';
+import { Public } from './auth/decorator/public.decorator';
 
 @Controller()
 export class AppController {
