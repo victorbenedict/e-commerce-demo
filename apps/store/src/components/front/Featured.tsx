@@ -7,10 +7,21 @@ import {
   CarouselPrevious,
 } from '@repo/ui/components/base/carousel';
 
+type TProduct = {
+  id: string;
+  sellerId: string;
+  name: string;
+  sku: string;
+};
+
 export default async function Featured() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_STORE_URL}/api/getAllFeaturedProducts/`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/featured-product/complete`);
+  if (!res.ok) {
+    console.error(`Failed to fetch featured products: ${res.statusText}`);
+    return <div>Failed to load products.</div>;
+  }
   const parsedResponse = await res.json();
-  const products = parsedResponse.data || [];
+  const products: TProduct[] = parsedResponse.data || [];
 
   return (
     <div className="self-stretch p-4">
@@ -23,7 +34,7 @@ export default async function Featured() {
         className="w-full"
       >
         <CarouselContent className="-ml-1">
-          {products.map((item, index) => (
+          {products.map((item, index: number) => (
             <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
               <div className="p-1">
                 <Card>
