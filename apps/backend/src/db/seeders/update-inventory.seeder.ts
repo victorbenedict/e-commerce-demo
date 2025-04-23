@@ -8,7 +8,9 @@ export default class InventorySeeder extends Seeder {
     const inventories = await inventoryRepo.find();
 
     for (const item of inventories) {
-      item.quantity = Math.floor(Math.random() * 100) + 1;
+      if (item.quantity === 0) {
+        item.quantity = Math.floor(Math.random() * 100) + 1;
+      }
     }
 
     await inventoryRepo.save(inventories);

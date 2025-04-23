@@ -7,9 +7,11 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/jwt/jwt-auth.guard';
 import { RolesGuard } from './auth/role/roles.guard';
+import { FeaturedProductModule } from './featured-product/featured-product.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { ProductModule } from './product/product.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -31,6 +33,7 @@ import { UserProfileModule } from './user-profile/user-profile.module';
     InventoryModule,
     ProductModule,
     UserProfileModule,
+    FeaturedProductModule,
   ],
   controllers: [AppController],
   providers: [

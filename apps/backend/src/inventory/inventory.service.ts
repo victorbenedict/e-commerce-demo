@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateInventoryDto } from './dto/create-inventory.dto';
 import { UpdateInventoryDto } from './dto/update-inventory.dto';
 import { Inventory } from './entities/inventory.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class InventoryService {
@@ -39,6 +39,7 @@ export class InventoryService {
     updateInventoryDto: UpdateInventoryDto,
   ): Promise<Inventory | null> {
     await this.inventoryRepository.update({ id }, updateInventoryDto);
+
     return this.findOne(id);
   }
 
