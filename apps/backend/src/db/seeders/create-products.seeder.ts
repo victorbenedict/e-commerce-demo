@@ -31,8 +31,8 @@ export default class ProductsSeeder extends Seeder {
       },
       {
         sellerId: '87a5b015-d5f1-4831-a203-3d63e2298b9c',
-        name: 'Orbit',
-        sku: 'ORB-2025-001',
+        name: 'Spot Arm',
+        sku: 'SPT-ARM-2025-001',
       },
     ];
 

@@ -11,6 +11,7 @@ import { FeaturedProductModule } from './featured-product/featured-product.modul
 import { InventoryModule } from './inventory/inventory.module';
 import { ProductModule } from './product/product.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
+import { SupabaseModule } from './supabase/supabase.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { UserProfileModule } from './user-profile/user-profile.module';
     ProductModule,
     UserProfileModule,
     FeaturedProductModule,
+    SupabaseModule,
   ],
   controllers: [AppController],
   providers: [

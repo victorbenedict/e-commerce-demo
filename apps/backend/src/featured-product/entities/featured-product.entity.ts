@@ -17,6 +17,9 @@ export class FeaturedProduct {
   @Column({ name: 'seller_id', type: 'uuid' })
   sellerId: string;
 
+  @Column({ name: 'image_url', type: 'varchar' })
+  imageUrl: string;
+
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Date;
 
