@@ -8,16 +8,16 @@ import {
 } from '@repo/ui/components/base/carousel';
 import Image from 'next/image';
 
-type TProduct = {
+interface TProduct {
   id: string;
   sellerId: string;
   productId: string;
   imageUrl: string;
   name: string;
   sku: string;
-};
+}
 
-export default async function Featured() {
+export default async function FeaturedSection() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/featured-product/complete`, {
     cache: 'no-store',
   });
