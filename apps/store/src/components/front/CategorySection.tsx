@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from '@repo/ui/components/base/card';
 
-export default function Categories() {
+export default function CategorySection() {
   return (
     <div className="self-stretch grid grid-cols-3 gap-4 p-4">
       <Card>

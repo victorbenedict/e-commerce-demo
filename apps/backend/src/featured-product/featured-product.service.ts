@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from 'src/product/entities/product.entity';
-import { In, Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { CreateFeaturedProductDto } from './dto/create-featured-product.dto';
 import { UpdateFeaturedProductDto } from './dto/update-featured-product.dto';
 import { FeaturedProduct } from './entities/featured-product.entity';
@@ -27,14 +27,20 @@ export class FeaturedProductService {
   }
 
   async findAllComplete() {
-    const featuredProducts = await this.findAll();
-    const refProductIds = featuredProducts.map((item) => item.productId);
+    const featureProducts = await this.findAll();
+    const productIds = featureProducts.map((fp) => fp.productId);
+    const matchProducts = await this.productRepo.find({
+      where: { id: In(productIds) },
+    });
 
-    return await this.productRepo.findBy({
-      id: In(refProductIds),
+    return featureProducts.map((fp) => {
+      const products = matchProducts.find((prod) => prod.id === fp.productId);
+      return {
+        ...fp,
+        name: products?.name,
+      };
     });
   }
-
   async findOne(id: number): Promise<FeaturedProduct | null> {
     return await this.featuredProductRepo.findOne({ where: { id: id } });
   }

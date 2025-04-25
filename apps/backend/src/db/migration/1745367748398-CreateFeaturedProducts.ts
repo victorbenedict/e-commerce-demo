@@ -19,14 +19,20 @@ export class CreateFeaturedProducts1745367748398 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
+            name: 'product_id',
+            type: 'uuid',
+            isNullable: false,
+          },
+          {
             name: 'seller_id',
             type: 'uuid',
             isNullable: false,
           },
           {
-            name: 'product_id',
-            type: 'uuid',
-            isNullable: false,
+            name: 'image_url',
+            type: 'varchar',
+            length: '2048',
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -55,6 +61,7 @@ export class CreateFeaturedProducts1745367748398 implements MigrationInterface {
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',
       }),
+
       new TableForeignKey({
         columnNames: ['product_id'],
         referencedTableName: 'products',

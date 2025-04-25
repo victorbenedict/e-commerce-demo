@@ -6,22 +6,27 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@repo/ui/components/base/carousel';
+import Image from 'next/image';
 
-type TProduct = {
+interface TProduct {
   id: string;
   sellerId: string;
+  productId: string;
+  imageUrl: string;
   name: string;
   sku: string;
-};
+}
 
-export default async function Featured() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/featured-product/complete`);
+export default async function FeaturedSection() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/featured-product/complete`, {
+    cache: 'no-store',
+  });
   if (!res.ok) {
     console.error(`Failed to fetch featured products: ${res.statusText}`);
     return <div>Failed to load products.</div>;
   }
   const parsedResponse = await res.json();
-  const products: TProduct[] = parsedResponse.data || [];
+  const products: TProduct[] = parsedResponse ?? [];
 
   return (
     <div className="self-stretch p-4">
@@ -34,11 +39,18 @@ export default async function Featured() {
         className="w-full"
       >
         <CarouselContent className="-ml-1">
-          {products.map((item, index: number) => (
-            <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
+          {products.map((item) => (
+            <CarouselItem key={item.id} className="pl-1 md:basis-1/2 lg:basis-1/3">
               <div className="p-1">
                 <Card>
-                  <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
+                    <Image
+                      className="h-full w-full"
+                      src={item.imageUrl}
+                      alt={`${item.name} product`}
+                      width={800}
+                      height={800}
+                    />
                     <span className="text-2xl font-semibold">{item.name}</span>
                   </CardContent>
                 </Card>
