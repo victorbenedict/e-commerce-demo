@@ -27,7 +27,7 @@ export default async function Featured() {
   }
   const parsedResponse = await res.json();
   const products: TProduct[] = parsedResponse ?? [];
-  console.log(products);
+
   return (
     <div className="self-stretch p-4">
       <h3 className="text-2xl font-bold text-center">Top Products</h3>
